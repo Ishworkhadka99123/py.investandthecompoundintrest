@@ -1,20 +1,169 @@
+from _ast import Lambda
 
-class value ():
-    RED = '\033[31m'
+from tkinter import *
 
-print(value.RED )
+root = Tk()
+# defining title of the project
 
-P=int(input('How much would you like to invest:'))
-a=float(input('What is the rate of intrest on your account:'))
-t=int(input('How long are you planning to invest:'))
-n=int(input('What is the number of times the intrest is compound per year:'))
-r=a/100
-g=n*t
-A=P*(1+r/n)**g
-L=P*(r/4)
-N=(P+1)
-D=n*t
-formated_l=format(P*(r/4),'.2f')
-formated_N=format((P+1),'2f')
-formated_A=format(A,'.2f')
-print('Rs',P ,',a,%for',t,'years compounded ',n,'times per year is:RS',formated_A)
+root.title("Calculator")
+
+e = Entry(root, width=35, borderwidth=5,font=("arial", 10, "bold"))
+
+e.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
+
+
+def button_click(number):
+    current = e.get()
+
+    e.delete(0, END)
+
+    e.insert(0, str(current) + str(number))
+
+
+def button_clear():
+    e.delete(0, END)
+
+
+def button_add():
+    first_number = e.get()
+
+    global f_num
+
+    global math
+
+    math = "addition"
+
+    f_num = int(first_number)
+
+    e.delete(0, END)
+
+
+def button_subtract():
+    first_number = e.get()
+
+    global f_num
+
+    global math
+
+    math = "subtraction"
+
+    f_num = int(first_number)
+
+    e.delete(0, END)
+
+
+def button_multiply():
+    first_number = e.get()
+
+    global f_num
+
+    global math
+
+    math = "multiplication"
+
+    f_num = int(first_number)
+
+    e.delete(0, END)
+
+
+def button_divide():
+    first_number = e.get()
+
+    global f_num
+
+    global math
+
+    math = "division"
+
+    f_num = int(first_number)
+
+    e.delete(0, END)
+
+
+def button_total():
+    second_number = e.get()
+
+    e.delete(0, END)
+
+    if math == "addition":
+        e.insert(0, f_num + int(second_number))
+
+
+    if math == "subtraction":
+         e.insert(0, f_num - int(second_number))
+
+    if math == "multiplication":
+          e.insert(0, f_num * int(second_number))
+
+    if math == "division":
+     e.insert(0, f_num / int(second_number))
+
+# Defining the buttons
+
+button_1 = Button(root, text="1", bg="gray", padx=40, pady=20, command=lambda: button_click(1))
+
+button_2 = Button(root, text="2", bg="gray", padx=40, pady=20, command=lambda: button_click(2))
+
+button_3 = Button(root, text="3", bg="gray", padx=40, pady=20, command=lambda: button_click(3))
+
+button_4 = Button(root, text="4", bg="gray", padx=40, pady=20, command=lambda: button_click(4))
+
+button_5 = Button(root, text="5", bg="gray", padx=40, pady=20, command=lambda: button_click(5))
+
+button_6 = Button(root, text="6", bg="gray", padx=40, pady=20, command=lambda: button_click(6))
+
+button_7 = Button(root, text="7", bg="gray", padx=40, pady=20, command=lambda: button_click(7))
+
+button_8 = Button(root, text="8", bg="gray",padx=40, pady=20, command=lambda: button_click(8))
+
+button_9 = Button(root, text="9", bg="gray", padx=40, pady=20, command=lambda: button_click(9))
+
+button_0 = Button(root, text="0", bg="gray",  padx=40, pady=20, command=lambda: button_click(0))
+
+button_add = Button(root, text="+", bg="gray", padx=40, pady=20, command=button_add)
+
+button_total = Button(root, text="=", bg="gray", padx=40, pady=20, command=button_total)
+
+button_clear = Button(root, text="C", bg="gray", padx=40, pady=20, command=button_clear)
+
+button_subtract = Button(root, text="-", bg="gray", padx=40, pady=20, command=button_subtract)
+
+button_multiply = Button(root, text="*", bg="gray", padx=40, pady=20, command=button_multiply)
+
+button_divide = Button(root, text="/", bg="gray",  padx=40, pady=20, command=button_divide)
+
+# Putting buttons on the screen
+
+button_1.grid(row=1, column=0)
+
+button_2.grid(row=1, column=1)
+
+button_3.grid(row=1, column=2)
+
+button_add.grid(row=1, column=3)
+
+button_4.grid(row=2, column=0)
+
+button_5.grid(row=2, column=1)
+
+button_6.grid(row=2, column=2)
+
+button_subtract.grid(row=2, column=3)
+
+button_7.grid(row=3, column=0)
+
+button_8.grid(row=3, column=1)
+
+button_9.grid(row=3, column=2)
+
+button_multiply.grid(row=3, column=3)
+
+button_clear.grid(row=4, column=0)
+
+button_0.grid(row=4, column=1)
+
+button_total.grid(row=4, column=2)
+
+button_divide.grid(row=4, column=3)
+
+root.mainloop()
